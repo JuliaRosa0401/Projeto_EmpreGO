@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}EmpreGO! - Resultados da Pesquisa {% endblock %}
+
+{% block content %}
+
+    <h1>Resultados para "{{ palavra_chave }}"</h1>
+    {% if vagas %}
+        <ul>
+            {% for vaga in vagas %}
+                <li>
+                    <h2>{{ vaga['titulo'] }}</h2>
+                    <p>{{ vaga['descricao'] }}</p>
+                    <p><strong>Empresa:</strong> {{ vaga['nome_empresa'] }}</p>
+                    <a href="/sobre_vaga/{{ vaga['id_vaga'] }}">Ver detalhes</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nenhuma vaga encontrada para "{{ palavra_chave }}"</p>
+    {% endif %}
+{% endblock %}

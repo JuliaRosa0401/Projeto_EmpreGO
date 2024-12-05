@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %} 💼 Mensagens do contato {% endblock %}
+
+{% block content %}
+{% for contato in contatos %}
+<div class="mb-3 border-bottom py-2 ">
+    <div class="card mb-4 shadow">
+        <div class="card-body">
+            <h5 class="card-title text-primary">
+                 {{ contato.nome_completo }}
+            </h5>
+            <h6 class="card-subtitle mb-2 text-muted">
+                {{ contato.assunto }} 
+            </h6>
+            <p class="card-subtitle mb-2 text-muted">
+                {{ contato.mensagem }}
+            </p>  
+                
+            <p class="card-text">
+                    <small class="text-muted">
+                        {{ contato.email }} - {{ contato.data_envio }}
+                    </small>
+            </p>
+        </div>
+    </div>
+</div>
+    {% else %}
+            <p>Nenhum arquivo encontrado!</p>
+    {% endfor %}
+
+{% endblock %}

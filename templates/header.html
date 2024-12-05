@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg  bg-primary" data-bs-theme="dark" >
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img src="../static/logogo.png" style="width: 7em;">
+        </a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ">
+          
+          {% if not session %}
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          {% elif 'adm' in session %}
+          <li class="nav-item">
+            <a class="nav-link" href="/adm">Painel do Admin</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Sair</a>
+          </li>
+          {% elif 'id_empresa' in session %}
+          <li class="nav-item">
+            <a class="nav-link" href="/empresa">Painel da Empresa</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Sair</a>
+          </li>
+          {% endif %}
+          </ul>
+          <ul class="navbar-nav ms-auto">
+            <nav class="navbar btn btn-primary">
+              <div class="container-fluid">
+                <form action="/pesquisar" class="d-flex" role="search">
+                  <input class="form-control me-1" type="search" name="q" placeholder="Digite uma palavra-chave" aria-label="Search" required>
+                  <button class="btn btn-secondary my-2 my-sm-0" type="submit">Pesquisar</button>
+                </form>
+              </div>
+            </nav>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+ 

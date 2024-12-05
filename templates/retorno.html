@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}EmpreGO! -  {% if feedback %}Pronto!!{% else %}Falhou!{% endif %}{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            {% if feedback %}  <!-- Exibe mensagem de erro, se houver -->
+              <h1>DEU TUDO CERTO!!!</h1>
+                <div class="alert alert-success" style="text-align: center;" role="alert">
+                    <p>Ação efetuada com sucesso!!</p>
+                    <img src="/static/certo.png" style="text-align: center;">
+                    <hr>
+                    <a href="/" class="btn btn-primary">Voltar para página inicial</a> 
+                </div>
+            {% else %}
+            <h1>DEU TUDO ERRADO!!!</h1>
+            <div class="alert alert-danger" role="alert">
+                <p>Falha ao enviar, tente mais tarde!</p>
+                <a href="/">Voltar para página inicial</a>
+            </div>
+
+            {% endif %}
+
+            
+        </div>
+    </div>
+</div>
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+(() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+</script>
+
+{% endblock %}

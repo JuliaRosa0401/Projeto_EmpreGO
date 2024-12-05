@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}EmpreGO! - Curriculos {% endblock %}
+
+{% block content %}
+    {% for candidato in candidatos %}
+    <li class="mb-3 border-bottom py-2 ">
+        <div class="card mb-4 shadow">
+            <div class="card-body">
+                <h5 class="card-title text-primary">
+                     {{ candidato.nome }}
+                </h5>
+                <h6 class="card-subtitle mb-2 text-muted">
+                    {{ candidato.telefone }} - {{ candidato.email }}
+                </h6>
+                <a href="/download/{{ candidato.curriculo }}" class="btn btn-success download" target="_blank">Baixar</a>
+                <a href="/delete/{{ candidato.curriculo }}" class="btn btn-danger excluir">Excluir</a>
+            </div>
+        </div>
+    </li>
+        {% else %}
+                <p>Nenhum arquivo encontrado!</p>
+        {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/roxo.css">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>{% block title %} {% endblock %} </title>
+</head>
+<body class="d-flex flex-column">
+    <header>
+       {% include "header.html" %}
+        
+    </header>
+
+    <main class="container mt-5 flex-fill">
+        {% block content %}
+        {% endblock %}
+<!-- 
+        <div class="card mb-4">
+          <div class="card-body">
+              <h5 class="card-title">Titulo da vaga</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Nome da empresa</h6>
+              <p class="card-text">Descrição da vaga</p>  
+              <p class="card-text"><small class="text-muted">Formato da vaga - Tipo da vaga</small></p>
+              <a href="/" class="btn btn-primary">Ver mais</a>
+          </div>
+      </div> -->
+      
+    </main>
+    
+    <footer>
+      {% include "footer.html" %} 
+    </footer>
+
+    <script src="../static/bootstrap/js/bootstrap.js"></script>
+</body>
+</html>

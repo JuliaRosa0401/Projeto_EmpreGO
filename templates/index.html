@@ -1,0 +1,55 @@
+
+{% extends "base.html" %}
+
+{% block title %}EmpreGO! - Página Inicial{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        {% if not banner %}
+        <div class="row">
+            <div class="col-12">
+                <h1>Encontre as melhores vagas!</h1>
+                <p>Aqui você encontra as vagas mais recentes das melhores empresas.</p>
+            </div>
+        </div>
+        
+      <div 
+        class="container d-none d-lg-block p-4 bg-light">
+        <h1 class=" text-center col-12 "><img src="../static/bannerempresa.png"  style="width: 27em;"></h1>
+        <p class="fs-7">NeuraByte atua no desenvolvimento de soluções de inteligência artificial para empresas. Estamos contratando Engenheiro(a) de Machine Learning, Gerente de Produto de IA, Designer de Experiência do Usuário (UX/UI)</p>
+      </div>
+      {% else %}
+      <a class="btn btn-success" href="/">Voltar</a>
+      {% endif %}
+      <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>Encontre sua vaga ideal!</h1>
+                <p>Explore as vagas mais recentes e dê o próximo passo na sua carreira.</p>
+                {% if login == 'empresa' %}
+                        <a href="/cadastrarvaga" class="btn btn-success">Cadastrar Vaga</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row mt-4">
+
+            {% for vaga in vagas %}
+                <div class="col-12 col-md-6 col-lg-4">
+                    {% include 'card.html' %}
+                </div>
+            {% endfor %}
+
+            {% if not vagas %}
+                <div class="col-12">
+                    <p class="text-center display-5">Nenhuma vaga encontrada no momento.</p>
+                </div>
+            {% endif %}
+        </div>
+
+
+        
+
+    </div>
+
+{% endblock %}

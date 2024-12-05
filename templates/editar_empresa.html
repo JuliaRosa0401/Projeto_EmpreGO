@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% block title %} 💼 Editar Empresa {% endblock %}
+
+{% block content %}
+
+<h2>Editar Dados da Empresa</h2>
+
+<div class="col-12">
+    <p><a href="/adm" class="btn btn-primary">Voltar</a></p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<hr>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1 class=" d-flex justify-content-center">Editar Empresa</h1>
+            <hr>
+
+            {% if msg_erro %}  <!-- Exibe mensagem de erro, se houver -->
+                <div class="alert alert-danger" role="alert">
+                    {{ msg_erro }}
+                </div>
+            {% endif %}
+                <form action="/editar_empresa/{{ empresa.id_empresa }}" method="post" class="needs-validation" novalidate>
+
+                    <h2>Informações da Empresa</h2>
+
+                    <div class="mb-3">
+                        <label for="nome_empresa" class="form-label">Nome Fantasia da Empresa</label>
+                        <input type="text" class="form-label" name="nome_empresa" value="{{ empresa.nome_empresa }}" maxlength="100" required> <br><br>
+                        <div class="valid-feedback">
+                            Parece bom! Parabéns
+                          </div>
+                        <div class="invalid-feedback">
+                            Algo está errado! Preencha o campo Ex: DevLadies
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cnpj" class="form-label">CNPJ</label>
+                        <input type="text" class="form-label" name="cnpj" id="cnpj" value="{{ empresa.cnpj }}" placeholder="Somente números" required> <br><br>
+                        <div class="valid-feedback">
+                            Parece bom! Parabéns
+                          </div>
+                        <div class="invalid-feedback">
+                            Algo está errado! Preencha o campo apenas com números Ex: 12345678901234
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="telefone" class="form-label">Telefone de Contato</label>
+                        <input type="text" class="form-label" name="telefone" id="telefone" value="{{ empresa.telefone }}"placeholder="Somente números" required> <br><br>
+                        <div class="valid-feedback">
+                            Parece bom! Parabéns
+                          </div>
+                        <div class="invalid-feedback">
+                            Algo está errado! Preencha o campo apenas com números Ex: 12345678901
+                        </div>
+                    </div>
+                    <h2>Informações para acesso da plataforma</h2>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label">E-mail </label>
+                        <input type="email" class="form-label" name="email" value="{{ empresa.email }}" maxlength="100" required><br><br>
+                        <div class="valid-feedback">
+                            Parece bom! Parabéns
+                          </div>
+                        <div class="invalid-feedback">
+                            Algo está errado! Preencha o campo Ex: empreGO.contato@gmail.com
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="senha" class="form-label">Senha</label>
+                        <input type="text" class="form-label" name="senha" value="{{ empresa.senha }}" maxlength="30" required><br><br>
+                        <div class="valid-feedback">
+                            Parece bom! Parabéns
+                        </div>
+                        <div class="invalid-feedback">
+                            Algo está errado! Preencha o campo corretamete Ex: Senh@SuperForte1234
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary">Editar Empresa</button>
+                        {% if msg_erro %} <p> {{ msg_erro }} </p> {% endif %}
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+    <!--script do BS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+
+    <!-- Link do Input Mask -->
+    <script src="https://cdn.jsdelivr.net/npm/inputmask@5.0.8/dist/inputmask.min.js"></script>
+
+    <script>
+        Inputmask("99.999.999/9999-99").mask(document.getElementById("cnpj"));//mascara para cnpj
+        Inputmask("(99)99999-9999").mask(document.getElementById("telefone"));//mascara para telefone
+    
+    </script>
+
+<!--validação-->
+    <script>
+        (() => {
+      'use strict'
+    
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      const forms = document.querySelectorAll('.needs-validation')
+    
+      // Loop over them and prevent submission
+      Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+    
+          form.classList.add('was-validated')
+        }, false)
+      })
+    })()
+    </script>
+{% endblock %}

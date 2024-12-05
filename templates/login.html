@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+<hr>
+{% block title %}EmpreGO! - Login{% endblock %}
+
+{% block content %}
+<!-- <form action="/login" method="post">
+    <h3>Faça seu login</h3>
+    <label for="email">E-mail</label>
+    <input type="email" name="email" required><br><br>
+    <label for="senha">Senha</label>
+    <input type="password" name="senha" required><br><br>
+    <button type="submit">Acessar</button>
+    {% if  msg_erro %}
+        <p style="color: red;">{{ msg_erro }}</p>
+    {% endif %}
+</form> -->
+<div class="container">
+    <div class="row justify-content-center"> <!-- Centraliza horizontalmente -->
+        <div class="col-md-6"> <!-- Ocupa metade da tela em telas médias e maiores -->
+            <h1 class="text-center mb-4">Login</h1>
+
+            {% if msgerro %}
+                <div class="alert alert-danger" role="alert">
+                    {{ msgerro }}
+                </div>
+            {% endif %}
+
+            <form action="/login" method="post">
+                <div class="mb-3">
+                    <label for="email" class="form-label">E-mail</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Insira seu e-mail" required>
+                </div>
+                <div class="mb-3">
+                    <label for="senha" class="form-label">Senha</label>
+                    <input type="password" class="form-control" id="senha" name="senha" placeholder="Insira sua senha" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Acessar</button> <p></p>
+                <p class="text-center"> <a href="/">Voltar</a> </p>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

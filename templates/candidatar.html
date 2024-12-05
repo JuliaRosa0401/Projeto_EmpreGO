@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block title %}EmpreGO! - Candidatar {% endblock %}
+
+{% block content %}
+
+<h2>Curriculo</h2>
+
+    <div class="col-12">
+        <p><a href="/sobre_vaga" class="btn btn-primary">Voltar</a></p>
+    </div>
+
+
+
+<hr>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1 class=" d-flex justify-content-center">Formulário</h1>
+
+            {% if msg_erro %}  <!-- Exibe mensagem de erro, se houver -->
+                <div class="alert alert-danger" role="alert">
+                    {{ msg_erro }}
+                </div>
+            {% endif %}
+            <form action="/candidatar/{{id_vaga}}" method="post" class="needs-validation" enctype="multipart/form-data" novalidate>
+
+                <h2 class="d-flex justify-content-center">Informações do Candidato</h2>
+                <hr>
+                <div class="mb-3">
+                    <label for="nome" class="form-label">Nome Completo</label>
+                    <input type="text" class="form-control" name="nome"  required> <br><br>
+                    <div class="valid-feedback">
+                        Parece bom! Parabéns
+                      </div>
+                    <div class="invalid-feedback">
+                        Algo está errado! Preencha o campo Ex: Fulano Siclano Silva
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">E-mail </label>
+                    <input type="text" class="form-control" name="email"   required> <br><br>
+                    <div class="valid-feedback">
+                        Parece bom! Parabéns
+                    </div>
+                    <div class="invalid-feedback">
+                        Algo está errado! Preencha o campo Ex: empreGO.contato@gmail.com
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="telefone" class="form-label">Telefone de Contato</label>
+                    <input type="text"  class="form-control" id="telefone" name="telefone" required> <br><br>
+                    <div class="valid-feedback">
+                        Parece bom! Parabéns
+                    </div>
+                    <div class="invalid-feedback">
+                        Algo está errado! Preencha o campo apenas com números Ex: 12345678901
+                    </div>
+                </div>
+
+                <label for="arquivo" class="form-label">Curriculo</label>
+                <input type="file"  class="form-control" name="file"  accept=".pdf" required> <br><br>
+                
+                
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary">Candidatar-se</button>
+                </div>
+                
+            </form>
+            
+        </div>
+    </div>
+</div>
+
+
+<script>
+    (() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+</script>
+
+<!--script do bs-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<!--link de inputmask-->
+<script src="https://cdn.jsdelivr.net/npm/inputmask@5.0.8/dist/inputmask.min.js"></script>
+
+<!--configuração inputmask-->
+<script>
+        
+        Inputmask("(99)99999-9999").mask(document.getElementById("telefone"));//mascara para telefone
+</script>
+
+<!--Validação-->
+<script>
+    (() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+</script>
+
+{% endblock %}
